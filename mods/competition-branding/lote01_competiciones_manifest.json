@@ -1,7 +1,7 @@
 {
   "project": "PES 2017 Android — competition logos",
   "date": "2026-11-21",
-  "status": "structurally_verified_android_untested",
+  "status": "android_menu_visual_pass_pending_full_game_validation",
   "basis": {
     "filename": "dt15_x36(1).cpk",
     "sha256": "e610ef7128eeabcc48b8422004950fa0d81004eef205beefbf0ed66a158841ae",
@@ -69,9 +69,18 @@
     "container_structure": "pass",
     "toc_and_extracted_png": "pass",
     "unmodified_resources_binary_match": "pass",
-    "android_launch": "pending",
-    "android_fps": "pending",
-    "master_league_save_load": "pending"
+    "android_launch": "pass_menu_only",
+    "android_fps": "60fps_in_menus_not_a_match_benchmark",
+    "master_league_save_load": "pending",
+    "visual_checks": {
+      "ligue_2_bkt": "pass",
+      "laliga_hypermotion": "pass",
+      "liga_portugal": "pass",
+      "serie_bkt": "pending",
+      "english_championship": "not_changed"
+    },
+    "temperature_overlay": "53-54 C in menu captures",
+    "user_reports": "salió bien"
   },
   "repository_policy": "No copyrighted game archive or third-party branding assets in public Git history.",
   "source_assets": [
@@ -91,5 +100,6 @@
       "filename": "serie-b-2018-logo.png",
       "sha256": "f9f73024b9d22e7f6fe8feb9d0557d56c1c4e270b226da0ba4eba0d82bbe62c2"
     }
-  ]
+  ],
+  "next_step": "Find and verify actual league name strings before touching dt10 or language CPK; keep original CPK backup."
 }
