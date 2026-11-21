@@ -1,0 +1,50 @@
+{
+  "project": "PES 2017 Android (Xbox 360 recompilado)",
+  "date": "2026-11-21",
+  "phase": "2A cup emblems",
+  "competition": "Emirates FA Cup",
+  "status": "binary_verified_android_test_pending",
+  "base": {
+    "filename": "dt15_x36_LOTE04_LOGOS_AUTENTICOS.cpk",
+    "bytes": 246746371,
+    "sha256": "853d9cdb40cf22525877231544d8670cf2b6150ad667de83544cf1f4533bee98"
+  },
+  "output": {
+    "filename": "dt15_x36_LOTE05_FA_CUP_AUTENTICA.cpk",
+    "bytes": 246746371,
+    "sha256": "03cbeb18fc847873a711c733f1ec8fbfa03d60d5688803f07e1310f12004f3c2"
+  },
+  "modified": [
+    {
+      "resource": "common/render/symbol/emblemLc/emb_0015_l.png",
+      "bytes_before": 17612,
+      "bytes_after": 8242,
+      "format": "PNG indexed (P) 256x256, palette 128 colors, transparency",
+      "new_png_sha256": "2fd4e3889f9127492a6dbe4a003b2b65283fa1e98767a76b226e19190fc81732"
+    }
+  ],
+  "resources_total": 2784,
+  "resources_unchanged_and_verified": 2783,
+  "cpk_size_unchanged": true,
+  "source": {
+    "svg_filename": "emirates-fa-cup.svg",
+    "git_repository": "mierzida/FLP_forBBK",
+    "commit": "cd7043224e00c85fe1d2a0437003de2b96425b39",
+    "path": "public/assets/logos/england/emirates-fa-cup.svg",
+    "svg_sha256": "c03088a51865b089d0965f71e61d2e7f2f2b6b534c6e9e974e0c771039db5283",
+    "visual_reference": "The Football Association Emirates FA Cup identity 2026/27",
+    "provenance_caveat": "Vector provided via an external public mirror, compared visually with the FA official design."
+  },
+  "validation": {
+    "cpk_header": "passed",
+    "toc": "passed",
+    "modified_png": "passed",
+    "unmodified_entries_bytewise": "passed",
+    "file_length": "passed",
+    "android_menu": "pending",
+    "full_match_fps": "pending",
+    "master_league_save_load": "pending"
+  },
+  "rollback": "Keep a separate backup of the currently functional dt15_x36.cpk. Close the game before replacing; restore backup on failure.",
+  "public_git_content": "Metadata and scripts only. Neither CPK, svg nor third-party logo assets committed."
+}
