@@ -1,0 +1,23 @@
+team_id,league,existing_name,real_name,action
+4071,Premier League,EAST DORSETSHIRE,AFC Bournemouth,rename_and_crest
+378,Premier League,LANCASHIRE CLARET,Burnley FC,rename_and_crest
+102,Premier League,LONDON FC,Chelsea FC,rename_and_crest
+382,Premier League,SOUTH NORWOOD,Crystal Palace,rename_and_crest
+177,Premier League,MERSEYSIDE BLUE,Everton FC,rename_and_crest
+1589,Premier League,YORKSHIRE ORANGE,Hull City,rename_and_crest
+204,Premier League,EAST MIDLANDS,Leicester City,rename_and_crest
+173,Premier League,MAN BLUE,Manchester City,rename_and_crest
+100,Premier League,MAN RED,Manchester United,rename_and_crest
+205,Premier League,TEESSIDE,Middlesbrough FC,rename_and_crest
+207,Premier League,HAMPSHIRE RED,Southampton FC,rename_and_crest
+395,Premier League,ST RED,Stoke City,rename_and_crest
+396,Premier League,WEARSIDE,Sunderland AFC,rename_and_crest
+1909,Premier League,WEST GLAMORGAN CITY,Swansea City,rename_and_crest
+179,Premier League,NORTH EAST LONDON,Tottenham Hotspur,rename_and_crest
+398,Premier League,HERTFORDSHIRE,Watford FC,rename_and_crest
+399,Premier League,WEST MIDLANDS STRIPES,West Bromwich Albion,rename_and_crest
+105,Premier League,EAST LONDON,West Ham United,rename_and_crest
+101,Premier League,ARSENAL FC,Arsenal FC,keep_if_correct
+103,Premier League,LIVERPOOL FC,Liverpool FC,keep_if_correct
+109,La Liga,MD WHITE,Real Madrid,rename_and_crest
+120,Serie A,PM BLACK WHITE,Juventus FC,rename_and_crest
