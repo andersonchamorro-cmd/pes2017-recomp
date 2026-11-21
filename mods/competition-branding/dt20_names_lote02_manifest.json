@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-21",
+  "batch": "DT20 names LOTE02 cumulative",
+  "status": "BINARY_VERIFIED_ANDROID_PENDING",
+  "input": {
+    "filename": "dt20_eng_x36_NOMBRES_LOTE01_PILOTO.cpk",
+    "sha256": "a0b3f2532124733ee660105b99e276e7a4d3a3a5956ccd38a294bd037df7403a"
+  },
+  "output": {
+    "filename": "dt20_eng_x36_NOMBRES_LOTE02_SEGUNDAS_DIVISIONES.cpk",
+    "sha256": "29f3beac0f91f3f4c336e586f407c4c31ec0d4592b89fd80f5a10600af4e0ccd"
+  },
+  "cpk_size_bytes": 368184,
+  "cpk_entries": 5,
+  "changed_resources": 1,
+  "changed_resource": "eng/string/all.str",
+  "unchanged_resources_bytewise": 4,
+  "packed_before_bytes": 280369,
+  "packed_after_bytes": 280338,
+  "uncompressed_bytes": 844784,
+  "slot_capacity_bytes": 284672,
+  "changes": [
+    {
+      "before": "English 2nd Division",
+      "after": "Sky Bet Championship",
+      "offset": 748380
+    },
+    {
+      "before": "Italian 2nd Division",
+      "after": "Serie BKT",
+      "offset": 748431
+    },
+    {
+      "before": "Spanish 2nd Division",
+      "after": "LALIGA HYPERMOTION",
+      "offset": 748401
+    }
+  ],
+  "quality_checks": {
+    "exact_NUL_delimited_string_substitution": true,
+    "other_playoff_label_unchanged": true,
+    "all_previous_batch_labels_preserved": true,
+    "unpacked_resource_exact_expected_diffs": true,
+    "toc_and_header_structure_valid": true,
+    "cpk_size_unchanged": true,
+    "other_four_entries_unchanged": true,
+    "android_menu_test": "pending"
+  },
+  "docs_no_game_content": true
+}
