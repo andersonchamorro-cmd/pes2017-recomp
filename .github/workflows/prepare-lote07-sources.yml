@@ -39,22 +39,25 @@ jobs:
                   raise ValueError('Expected PNG source failed for '+name)
               img=Image.open(io.BytesIO(data));img.load()
               if img.width<250 or img.height<250:raise ValueError('Unexpected low-quality logo: '+name)
+              (out/(name+'_original.png')).write_bytes(data)
               rgba=img.convert('RGBA')
+              print('SOURCE_ALPHA_'+name,rgba.getchannel('A').getextrema(),rgba.getpixel((0,0)),img.size)
               alpha=rgba.getchannel('A')
               bb=alpha.getbbox()
               if not bb:raise ValueError('Source blank '+name)
               cropped=rgba.crop(bb)
               cropped.thumbnail((226,226),Image.Resampling.LANCZOS)
-              canvas=Image.new('RGBA',(256,256),'white')
+              canvas=Image.new('RGBA',(256,256),(0,0,0,0))
               canvas.alpha_composite(cropped,((256-cropped.width)//2,(256-cropped.height)//2))
               candidates=[]
               for ncolors in [256,128,64,32,16]:
                   im=canvas.quantize(colors=ncolors,method=Image.Quantize.FASTOCTREE,dither=Image.Dither.NONE)
                   b=io.BytesIO();im.save(b,'PNG',optimize=True,compress_level=9)
-                  if len(b.getvalue())<=cap:
+                  if len(b.getvalue())<=cap and ('transparency' in Image.open(io.BytesIO(b.getvalue())).info):
                       candidates.append((ncolors,b.getvalue()))
               if not candidates:
-                  raise ValueError('No indexed PNG fits for '+name)
+                  print('WARN_NO_TRANSPARENT_PNG_'+name)
+                  continue
               colors,png=candidates[0]
               dest=out/(name+'.png');dest.write_bytes(png)
               Image.open(dest).verify()
