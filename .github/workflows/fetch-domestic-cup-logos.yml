@@ -1,0 +1,81 @@
+name: Prepare PES 2017 Emirates FA Cup official logo (private mod input)
+
+on:
+  push:
+    branches: [feature/competition-logos-20261121]
+    paths:
+      - .github/workflows/fetch-domestic-cup-logos.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prepare-fa-cup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install safe image conversion dependencies
+        run: python -m pip install --disable-pip-version-check pillow cairosvg
+      - name: Retrieve original SVG and prepare indexed PNG for dt15
+        shell: bash
+        run: |
+          cat >/tmp/facup.py <<'PY'
+          from pathlib import Path
+          from hashlib import sha256
+          from urllib.request import Request, urlopen
+          from PIL import Image
+          import cairosvg
+          import io, json
+
+          # Verifiable third-party mirror of the actual red Emirates FA Cup emblem;
+          # 2026 branding was cross-checked against The FA's 2026/27 media.
+          url = ('https://raw.githubusercontent.com/mierzida/FLP_forBBK/'
+                 'main/public/assets/logos/england/emirates-fa-cup.svg')
+          req = Request(url, headers={'User-Agent':'PES2017-local-mod-source-preparation/1.0'})
+          with urlopen(req, timeout=30) as resp:
+              svg = resp.read(2_000_000)
+          if not svg.lstrip().startswith(b'<svg') and b'<svg' not in svg[:512]:
+              raise SystemExit('SVG check failed; not updating any input')
+          if len(svg) > 300_000:
+              raise SystemExit('Unexpected SVG size')
+          if b'<script' in svg.lower() or b'<foreignobject' in svg.lower():
+              raise SystemExit('Unexpected active SVG content')
+          out = Path('fa-cup-logo-input'); out.mkdir(exist_ok=True)
+          (out/'original_emirates_fa_cup.svg').write_bytes(svg)
+          raster = cairosvg.svg2png(bytestring=svg, output_width=512, output_height=512)
+          im = Image.open(io.BytesIO(raster)).convert('RGBA')
+          bb = im.getchannel('A').getbbox()
+          if not bb: raise SystemExit('Source logo is transparent/blank')
+          cropped = im.crop(bb)
+          cropped.thumbnail((222,236), Image.Resampling.LANCZOS)
+          canvas = Image.new('RGBA',(256,256),(0,0,0,0))
+          canvas.alpha_composite(cropped,((256-cropped.width)//2,(256-cropped.height)//2))
+          original_alpha = canvas.getchannel('A').getbbox()
+          if not original_alpha: raise SystemExit('Logo blank after resize')
+          choices=[]
+          for n in (32,64,128,256):
+              idx=canvas.quantize(colors=n,method=Image.Quantize.FASTOCTREE,dither=Image.Dither.NONE)
+              name=f'emb_0015_l_{n}.png'
+              path=out/name; idx.save(path,format='PNG',optimize=True,compress_level=9)
+              with Image.open(path) as verify:
+                  verify.load()
+                  if verify.size!=(256,256) or verify.mode!='P':
+                      raise SystemExit('Image format mismatch')
+              choices.append({'name':name,'palette_colors':n,'size_bytes':path.stat().st_size,'sha256':sha256(path.read_bytes()).hexdigest()})
+          # Baseline PNG is the smallest high-quality option; selection for patching
+          # MUST still check the storage capacity in the user's actual CPK.
+          canvas.save(out/'preview_rgba.png',optimize=True)
+          report={'competition':'Emirates FA Cup','cpk_resource':'common/render/symbol/emblemLc/emb_0015_l.png',
+                  'source_url':url,'source_svg_sha256':sha256(svg).hexdigest(),
+                  'png_variants':choices,'source_provenance':'Third-party source mirror; compare with The FA official branding',
+                  'status':'INPUTS ONLY. Android functional tests required. No commercial game binaries included.'}
+          (out/'manifest.json').write_text(json.dumps(report,indent=2)+'\n')
+          print(json.dumps(report,indent=2))
+          PY
+          python /tmp/facup.py
+      - name: Upload private conversion inputs (temporary)
+        uses: actions/upload-artifact@v4
+        with:
+          name: PES2017-Emirates-FA-Cup-Logo-Input
+          path: fa-cup-logo-input/
+          retention-days: 7
