@@ -42,7 +42,7 @@ jobs:
               raise SystemExit('Unexpected active SVG content')
           out = Path('fa-cup-logo-input'); out.mkdir(exist_ok=True)
           (out/'original_emirates_fa_cup.svg').write_bytes(svg)
-          raster = cairosvg.svg2png(bytestring=svg, output_width=512, output_height=512)
+          raster = cairosvg.svg2png(bytestring=svg, output_height=600)
           im = Image.open(io.BytesIO(raster)).convert('RGBA')
           bb = im.getchannel('A').getbbox()
           if not bb: raise SystemExit('Source logo is transparent/blank')
