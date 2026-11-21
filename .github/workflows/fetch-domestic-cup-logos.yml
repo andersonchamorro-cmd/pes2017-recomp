@@ -30,7 +30,7 @@ jobs:
           # Verifiable third-party mirror of the actual red Emirates FA Cup emblem;
           # 2026 branding was cross-checked against The FA's 2026/27 media.
           url = ('https://raw.githubusercontent.com/mierzida/FLP_forBBK/'
-                 'main/public/assets/logos/england/emirates-fa-cup.svg')
+                 'cd7043224e00c85fe1d2a0437003de2b96425b39/public/assets/logos/england/emirates-fa-cup.svg')
           req = Request(url, headers={'User-Agent':'PES2017-local-mod-source-preparation/1.0'})
           with urlopen(req, timeout=30) as resp:
               svg = resp.read(2_000_000)
@@ -42,12 +42,12 @@ jobs:
               raise SystemExit('Unexpected active SVG content')
           out = Path('fa-cup-logo-input'); out.mkdir(exist_ok=True)
           (out/'original_emirates_fa_cup.svg').write_bytes(svg)
-          raster = cairosvg.svg2png(bytestring=svg, output_height=600)
+          raster = cairosvg.svg2png(bytestring=svg, output_height=900)
           im = Image.open(io.BytesIO(raster)).convert('RGBA')
           bb = im.getchannel('A').getbbox()
           if not bb: raise SystemExit('Source logo is transparent/blank')
           cropped = im.crop(bb)
-          cropped.thumbnail((222,236), Image.Resampling.LANCZOS)
+          cropped.thumbnail((224,238), Image.Resampling.LANCZOS)
           canvas = Image.new('RGBA',(256,256),(0,0,0,0))
           canvas.alpha_composite(cropped,((256-cropped.width)//2,(256-cropped.height)//2))
           original_alpha = canvas.getchannel('A').getbbox()
