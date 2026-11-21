@@ -1,0 +1,82 @@
+name: Prepare PES 2017 Premier League crest images
+
+on:
+  push:
+    branches: [feature/club-names-logos-pilot]
+    paths: [.github/workflows/fetch-premier-logos.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  download-and-render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install image renderer
+        run: python -m pip install --disable-pip-version-check cairosvg pillow
+
+      - name: Retrieve external SVG logos and render individual transparent PNGs
+        shell: bash
+        run: |
+          cat > /tmp/get_logos.py <<'PY'
+          from pathlib import Path
+          import urllib.request
+          import io
+          from PIL import Image
+          import cairosvg
+
+          # Source: public football-logos collection for personal game modding.
+          # Original source URL and logo naming are preserved in manifest.
+          names = {
+            4071: "Bournemouth.svg",
+            378: "Burnley.svg",
+            382: "Crystal_Palace.svg",
+            177: "Everton.svg",
+            1589: "Hull_City.svg",
+            204: "Leicester.svg",
+            205: "Middlesbrough.svg",
+            207: "Southampton.svg",
+            395: "Stoke_City.svg",
+            396: "Sunderland.svg",
+            1909: "Swansea_City.svg",
+            179: "Tottenham.svg",
+            398: "Watford.svg",
+            399: "West_Bromwich_Albion.svg",
+            105: "West_Ham.svg",
+          }
+          base = "https://raw.githubusercontent.com/JoseArroyave/football-logos/main/logos/england/"
+          out = Path("premier-logos")
+          out.mkdir(exist_ok=True)
+          manifest = ["PES2017_ID,Source_File,Source_URL,PNG_File"]
+          for teamid, filename in names.items():
+            url = base + filename
+            req = urllib.request.Request(url, headers={"User-Agent":"PES2017-Logo-Conversion/1.0"})
+            with urllib.request.urlopen(req, timeout=30) as stream:
+              svg = stream.read()
+            if b"<svg" not in svg[:8192]:
+              raise RuntimeError(f"Not SVG: {filename}")
+            png = cairosvg.svg2png(bytestring=svg, output_width=460, output_height=460)
+            img = Image.open(io.BytesIO(png)).convert("RGBA")
+            bbox = img.getchannel("A").getbbox()
+            if not bbox:
+              raise RuntimeError(f"Empty logo: {filename}")
+            img = img.crop(bbox)
+            img.thumbnail((468,468),Image.Resampling.LANCZOS)
+            canvas=Image.new("RGBA",(512,512),(0,0,0,0))
+            canvas.alpha_composite(img, ((512-img.width)//2,(512-img.height)//2))
+            output=f"{teamid:04d}.png"
+            canvas.save(out/output, optimize=True)
+            manifest.append(f"{teamid},{filename},{url},{output}")
+            print(teamid, filename, "=>", output)
+          (out/"manifest.csv").write_text("\n".join(manifest)+"\n",encoding="utf8")
+          assert len(list(out.glob("*.png"))) == 15
+          PY
+          python /tmp/get_logos.py
+
+      - name: Export images for manual validation before patching CPK
+        uses: actions/upload-artifact@v4
+        with:
+          name: PES2017-Premier-15-Crests-Input
+          path: premier-logos/
+          retention-days: 7
