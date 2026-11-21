@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-21",
+  "batch": "Lote09B",
+  "status": "BINARY_VERIFIED_ANDROID_PENDING",
+  "input": {
+    "filename": "dt15_x36_LOTE08_KNVB_SUPERCUP_PORTUGAL_FC26.cpk",
+    "sha256": "54949b7f610ab3b0cf371b68c83cc19d482b01c6e53e2bbabbb1c33940707547",
+    "bytes": 246746371
+  },
+  "output": {
+    "filename": "dt15_x36_LOTE09B_SUPERCOPAS_SIN_FONDOS_FC26.cpk",
+    "sha256": "f7625ce5d4c436c868932bc39a21fa64cb1d32ad1ae8ffa653c2f3e2fad42cc6",
+    "bytes": 246746371
+  },
+  "resources_total": 2784,
+  "resources_modified": 3,
+  "resources_preserved_bytewise": 2781,
+  "modified": [
+    {
+      "competition": "Trophée des Champions",
+      "resource": "emb_0075_l.png",
+      "png_bytes": 6049,
+      "sha256": "67c73ed106d84983336181300fe035bbb7c5b7a04208803bdfeb6d73fe91b5d9"
+    },
+    {
+      "competition": "Johan Cruijff Schaal",
+      "resource": "emb_0077_l.png",
+      "png_bytes": 5920,
+      "sha256": "17d1549810abb256c31188fff024a8483257e109e1bcfd2059cafc36fb214112"
+    },
+    {
+      "competition": "Supertaça Cândido de Oliveira",
+      "resource": "emb_0078_l.png",
+      "png_bytes": 5818,
+      "sha256": "515afc4af14da47a8a409075e936ba0e8d725358b34cea2ee155fe05b8891742"
+    }
+  ],
+  "qa": {
+    "cpk_header": "pass",
+    "toc": "pass",
+    "resource_byte_for_byte": "2781/2781 pass",
+    "png_dimensions": "256x256",
+    "png_mode": "P indexed",
+    "alpha_corners": "all zero for all three",
+    "no_rectangular_matte": "verified in gray, blue and dark composite preview",
+    "same_cpk_size": "pass",
+    "android": "pending"
+  },
+  "policy": "No CPK, commercial game files, or third-party logos uploaded to public git."
+}
