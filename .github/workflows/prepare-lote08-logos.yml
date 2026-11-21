@@ -1,0 +1,48 @@
+name: PES2017 Lote08 trusted logos (temporary inputs)
+
+on:
+  pull_request:
+    branches: [feature/competition-logos-20261121]
+    paths:
+      - .github/workflows/prepare-lote08-logos.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-assets:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.ref == 'feature/lote08-source-assets-20261121'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch verified source artwork
+        shell: bash
+        run: |
+          python - <<'PY'
+          import urllib.request,hashlib,json,io
+          from pathlib import Path
+          from PIL import Image
+          sources={
+            "knvb_cup_neutral":"https://assets.football-logos.cc/logos/netherlands/1500x1500/knvb-cup.f193b5c6.png",
+            "italian_supercup_fc":"https://upload.wikimedia.org/wikipedia/commons/5/56/Ea-sports-fc-supercup-%282023-2024%29.png"
+          }
+          out=Path("original-lote08-logos");out.mkdir(exist_ok=True)
+          results=[]
+          for name,url in sources.items():
+              req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0 (compatible; pes17-personal-logo-preparation/1.0)"})
+              with urllib.request.urlopen(req,timeout=35) as response:
+                  raw=response.read(3_000_001)
+              if len(raw)>3_000_000 or not raw.startswith(b'\x89PNG\r\n\x1a\n'):
+                  raise ValueError("Expected png source: "+name)
+              im=Image.open(io.BytesIO(raw)); im.load()
+              if im.size[0] < 200 or im.size[1] < 200:raise ValueError("Too-small artwork: "+name)
+              (out/(name+".png")).write_bytes(raw)
+              results.append({"name":name,"url":url,"size":im.size,"mode":im.mode,"sha256":hashlib.sha256(raw).hexdigest(),"bytes":len(raw)})
+          (out/"manifest.json").write_text(json.dumps(results,indent=2)+"\n")
+          print(json.dumps(results,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PES2017-Lote08-private-source-pngs
+          path: original-lote08-logos/
+          retention-days: 7
