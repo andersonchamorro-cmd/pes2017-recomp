@@ -1,0 +1,57 @@
+{
+  "project": "PES 2017 Android",
+  "phase": "2A",
+  "batch": "Lote 06",
+  "date": "2026-11-21",
+  "status": "binary_pass_android_pending",
+  "input": {
+    "file": "dt15_x36_LOTE05_FA_CUP_AUTENTICA.cpk",
+    "bytes": 246746371,
+    "sha256": "03cbeb18fc847873a711c733f1ec8fbfa03d60d5688803f07e1310f12004f3c2"
+  },
+  "output": {
+    "file": "dt15_x36_LOTE06_COPA_REY_SUPERCOPA_AUTENTICAS.cpk",
+    "bytes": 246746371,
+    "sha256": "c47883f6093dcdc786cf6a83e41d1a2116afb147a76a7d6fea74c2cbb0b78761"
+  },
+  "total_resources": 2784,
+  "modified_resources": 2,
+  "unmodified_resources_verified": 2782,
+  "source_repo": "mierzida/FLP_forBBK",
+  "source_commit": "cd7043224e00c85fe1d2a0437003de2b96425b39",
+  "changes": [
+    {
+      "competition": "Copa del Rey",
+      "resource": "common/render/symbol/emblemLc/emb_0017_l.png",
+      "from_bytes": 16525,
+      "to_bytes": 5251,
+      "png_sha256": "c26e552c204593f5487c12938f5e3c198af76641e0a8a1844df009ebb173d3f2",
+      "svg_path": "public/assets/logos/spain/copa-del-rey.svg",
+      "svg_sha256": "aaced486308a2e1b2763fb7b20b7a06861b95b3c5101bca3d1d82875a7391fe7",
+      "notes": "Genuine Copa del Rey mark without MAPFRE sponsorship; white backing for dark PES menus"
+    },
+    {
+      "competition": "Supercopa de España",
+      "resource": "common/render/symbol/emblemLc/emb_0074_l.png",
+      "from_bytes": 5283,
+      "to_bytes": 4865,
+      "png_sha256": "bdbc57e160398664ae560034bee20cadcfdc41e735ffc68b010d3d1966fc0851",
+      "svg_path": "public/assets/logos/spain/supercopa-de-espana.svg",
+      "svg_sha256": "82bfc2c6628d8037b744698a36036ee16b7b3b11c515b5ba5a7ed5a483ea364d",
+      "notes": "Genuine Supercopa emblem; white backing for dark PES menus"
+    }
+  ],
+  "validations": {
+    "header": "pass",
+    "toc": "pass",
+    "png_read": "pass",
+    "unmodified_resources_bytewise": "pass",
+    "fa_cup_retained": "pass",
+    "same_file_length": "pass",
+    "android_menu": "pending",
+    "match_fps": "pending",
+    "master_league_save_load": "pending"
+  },
+  "roll_back": "Restore prior functioning dt15_x36.cpk after closing the game; other files untouched",
+  "public_github_policy": "No licensed third-party logos or commercial game archives committed."
+}
