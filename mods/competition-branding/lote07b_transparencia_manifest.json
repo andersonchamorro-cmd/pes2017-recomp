@@ -3,7 +3,7 @@
   "phase": "2A",
   "lot": "07B",
   "date": "2026-11-21",
-  "status": "binary_verified_android_pending",
+  "status": "android_menu_visual_pass_pending_match_save",
   "goal": "Remove rectangular white backgrounds from three authentic competition logos while retaining original style and FPS target",
   "input": {
     "filename": "dt15_x36_LOTE07_COPPA_FRANCIA_PORTUGAL.cpk",
@@ -52,9 +52,13 @@
     "png_decode": "pass",
     "transparent_background": "pass",
     "same_container_length": "pass",
-    "android_visual": "pending",
+    "android_visual": "passed_user_screenshots_france_italy_portugal",
     "match_fps": "pending",
-    "master_league_save_load": "pending"
+    "master_league_save_load": "pending",
+    "android_menu_fps": "60_fps_all_three_samples_16_7_to_16_8_ms",
+    "overlay_temperature": "49_to_54_C_in_menu_not_a_sustained_load_measurement",
+    "portuguese_typography": "low_contrast_of_white_taca_de_portugal_text_on_gray; symbol clear"
   },
-  "no_modified": "Other 2781 resources, no team/league names, no scores, no gameplay files"
+  "no_modified": "Other 2781 resources, no team/league names, no scores, no gameplay files",
+  "next_step": "Retain 07B as functional menus baseline; subtle Portuguese text contrast improvement in next carefully limited batch."
 }
