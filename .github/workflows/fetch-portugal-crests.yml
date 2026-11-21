@@ -1,0 +1,71 @@
+name: Prepare PES 2017 Portugal League crest images
+
+on:
+  push:
+    branches: [feature/club-names-logos-pilot]
+    paths: [.github/workflows/fetch-portugal-crests.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  render-16-logos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install SVG renderer
+        run: python -m pip install --disable-pip-version-check cairosvg pillow
+      - name: Fetch and convert club crest source SVGs
+        shell: bash
+        run: |
+          cat > /tmp/prepare.py <<'PY'
+          from pathlib import Path
+          import urllib.request, urllib.parse, io, csv
+          from PIL import Image
+          import cairosvg
+          names={
+            2380:'Arouca.svg',
+            1973:'Os_Belenenses.svg',
+            4323:'Boavista.svg',
+            1974:'SC_Braga.svg',
+            4085:'Grupo_Desportivo_de_Chaves.svg',
+            2383:'Estoril.svg',
+            2385:'Feirense.svg',
+            1976:'Marítimo.svg',
+            2388:'Moreirense.svg',
+            1944:'Nacional_da_Madeira.svg',
+            1978:'Paços_Ferreira.svg',
+            192:'FC_Porto.svg',
+            1979:'Rio_Ave.svg',
+            2614:'Tondela.svg',
+            1804:'Vitória_de_Guimarães.svg',
+            1981:'Vitória_de_Setúbal.svg'
+          }
+          assert len(names)==16
+          path=Path('portugal-crests');path.mkdir(exist_ok=True)
+          with (path/'manifest.csv').open('w',newline='',encoding='utf8') as fp:
+            writer=csv.writer(fp)
+            writer.writerow(['PES2017_ID','Source_File','Source_URL','PNG_File'])
+            for tid,source in names.items():
+              url='https://raw.githubusercontent.com/JoseArroyave/football-logos/main/logos/portugal/'+urllib.parse.quote(source)
+              req=urllib.request.Request(url,headers={'User-Agent':'PES2017-Private-Crest-Preparation/1.0'})
+              with urllib.request.urlopen(req,timeout=35) as response:
+                svg=response.read()
+              if b'<svg' not in svg[:8192]:raise RuntimeError('Not SVG: '+source)
+              image=Image.open(io.BytesIO(cairosvg.svg2png(bytestring=svg,output_width=480,output_height=480))).convert('RGBA')
+              bbox=image.getchannel('A').getbbox()
+              if not bbox:raise RuntimeError('Transparent logo '+source)
+              image=image.crop(bbox);image.thumbnail((468,468),Image.Resampling.LANCZOS)
+              canvas=Image.new('RGBA',(512,512),(0,0,0,0))
+              canvas.alpha_composite(image,((512-image.width)//2,(512-image.height)//2))
+              output=f'{tid:04d}.png';canvas.save(path/output,optimize=True)
+              writer.writerow([tid,source,url,output]);print('SUCCESS',tid,source)
+          assert len(list(path.glob('*.png')))==16
+          PY
+          python /tmp/prepare.py
+      - name: Publish temporary image package for local conversion
+        uses: actions/upload-artifact@v4
+        with:
+          name: PES2017-Portugal-16-Crest-Inputs
+          path: portugal-crests/
+          retention-days: 7
