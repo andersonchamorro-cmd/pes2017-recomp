@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-21",
+  "phase": "2B",
+  "batch": "dt20_names_pilot_01",
+  "status": "BINARY_VERIFIED_ANDROID_PENDING",
+  "original_filename": "dt20_eng_x36.cpk",
+  "original_sha256": "2f33c53cc6adcfd5e34298d4a9213be0ec41e7625b6994883203a22239c6142e",
+  "modified_filename": "dt20_eng_x36_NOMBRES_LOTE01_PILOTO.cpk",
+  "modified_sha256": "a0b3f2532124733ee660105b99e276e7a4d3a3a5956ccd38a294bd037df7403a",
+  "container_bytes": 368184,
+  "resource": "eng/string/all.str",
+  "resources_total": 5,
+  "changed_resources": 1,
+  "preserved_resources": 4,
+  "source_resource_bytes": 282648,
+  "new_resource_bytes": 280369,
+  "uncompressed_bytes": 844784,
+  "slot_capacity": 284672,
+  "changes": [
+    {
+      "from": "English League",
+      "to": "Premier League",
+      "instances": 5
+    },
+    {
+      "from": "Italian League",
+      "to": "Serie A",
+      "instances": 5
+    },
+    {
+      "from": "Portugal League",
+      "to": "Liga Portugal",
+      "instances": 2
+    }
+  ],
+  "string_positions_unchanged": true,
+  "bytes_outside_expected_labels_unchanged_in_unpacked_resource": true,
+  "cpk_toc_verified": true,
+  "non_target_entries_byte_identical": true,
+  "android_verification": "pending",
+  "note": "The replacement strings with shorter length are padded with trailing spaces before original NUL to preserve offsets; no executable, dt10, dt15, game save edits."
+}
