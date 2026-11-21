@@ -2,7 +2,7 @@
   "project": "PES 2017 Android",
   "batch": "08",
   "date": "2026-11-21",
-  "status": "structural_pass_android_pending",
+  "status": "android_menu_visual_pass_pending_full_match_save",
   "design_target": "authentic transparent competition badges, restrained FC26-like presentation, preserve performance",
   "input": {
     "filename": "dt15_x36_LOTE07B_TRANSPARENTE_FC26.cpk",
@@ -49,9 +49,19 @@
     "replaced_png_indexed_256x256_alpha": "passed",
     "unmodified_resources_compared_bytewise": "passed 2781/2781",
     "length_unchanged": "passed",
-    "android_menu": "pending",
-    "fps_during_match": "pending",
-    "save_load": "pending"
+    "android_menu": "passed: three screenshots Netherlands, Italy, Portugal",
+    "fps_during_match": "pending, screenshots of menus only",
+    "save_load": "pending",
+    "fps_in_menu": "60,59,60 FPS; 16.6,16.8,16.6 ms",
+    "temperature_indicated": "51,53,53 degrees C (component unknown)",
+    "regression_check": "earlier Italian and Portugal league/cup emblems still visible"
   },
-  "rollback": "Keep user-tested lote 07B backed up locally and restore if any defect observed. GitHub stores scripts, metadata and documentation only."
+  "rollback": "Keep user-tested lote 07B backed up locally and restore if any defect observed. GitHub stores scripts, metadata and documentation only.",
+  "visual_qa_notes": [
+    "KNVB Cup: visible without white box",
+    "EA SPORTS FC Supercup Italy: visible but small in its menu slot",
+    "Taça de Portugal: visible with improved treatment, thin text still low-contrast",
+    "Dutch Super Cup old white-box icon visible and not changed by this lot"
+  ],
+  "next_action": "Continue from Lote 08, with conservative batches of verified authentic supercup logos and no background squares. Keep Lote 07B as rollback."
 }
