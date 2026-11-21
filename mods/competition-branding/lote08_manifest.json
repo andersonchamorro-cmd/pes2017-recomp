@@ -1,0 +1,57 @@
+{
+  "project": "PES 2017 Android",
+  "batch": "08",
+  "date": "2026-11-21",
+  "status": "structural_pass_android_pending",
+  "design_target": "authentic transparent competition badges, restrained FC26-like presentation, preserve performance",
+  "input": {
+    "filename": "dt15_x36_LOTE07B_TRANSPARENTE_FC26.cpk",
+    "bytes": 246746371,
+    "sha256": "10778afa0f01507edc62eb5940caf51a2a66eaa10520fae538b67d8b42fe140c"
+  },
+  "output": {
+    "filename": "dt15_x36_LOTE08_KNVB_SUPERCUP_PORTUGAL_FC26.cpk",
+    "bytes": 246746371,
+    "sha256": "54949b7f610ab3b0cf371b68c83cc19d482b01c6e53e2bbabbb1c33940707547"
+  },
+  "total_resources": 2784,
+  "changed_resources_count": 3,
+  "untouched_resources_bytewise": 2781,
+  "changes": [
+    {
+      "competition": "KNVB Cup / Beker (neutral badge)",
+      "resource": "common/render/symbol/emblemLc/emb_0019_l.png",
+      "bytes_old": 14935,
+      "bytes_new": 5272,
+      "new_png_sha256": "4cf1b810f75ecbbd84d8f24c81a4dcec145cd691712c31805bb50ee1deed5fc0",
+      "source": "football-logos.cc original neutral competition badge, no gambling sponsor image"
+    },
+    {
+      "competition": "EA SPORTS FC Supercup (Italy)",
+      "resource": "common/render/symbol/emblemLc/emb_0076_l.png",
+      "bytes_old": 10634,
+      "bytes_new": 6871,
+      "new_png_sha256": "9bf22925a30d27c9e432f4e3fef6734bfd04d850e3830e558edfcf7dfe59d5e9",
+      "source": "Lega Serie A official 2023 composite logo via Wikimedia Commons; event remains branded EA SPORTS FC Supercup 2026/27"
+    },
+    {
+      "competition": "Taça de Portugal (contrast-only)",
+      "resource": "common/render/symbol/emblemLc/emb_0020_l.png",
+      "bytes_old": 7945,
+      "bytes_new": 8319,
+      "new_png_sha256": "a09f413b364cbfadba5153bcd975f0000cf3aff2eee38a8ef5cac41639346bb4",
+      "change": "1 pixel dark stroke under white TAÇA DE PORTUGAL letters without any box or texture"
+    }
+  ],
+  "validation": {
+    "cpk_header": "passed",
+    "toc": "passed",
+    "replaced_png_indexed_256x256_alpha": "passed",
+    "unmodified_resources_compared_bytewise": "passed 2781/2781",
+    "length_unchanged": "passed",
+    "android_menu": "pending",
+    "fps_during_match": "pending",
+    "save_load": "pending"
+  },
+  "rollback": "Keep user-tested lote 07B backed up locally and restore if any defect observed. GitHub stores scripts, metadata and documentation only."
+}
