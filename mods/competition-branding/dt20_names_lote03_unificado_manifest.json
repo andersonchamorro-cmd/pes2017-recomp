@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-21",
+  "batch": "dt20 names combined Lote03",
+  "status": "BINARY_VERIFIED_ANDROID_PENDING",
+  "source": {
+    "filename": "dt20_eng_x36_NOMBRES_LOTE02_SEGUNDAS_DIVISIONES.cpk",
+    "sha256": "29f3beac0f91f3f4c336e586f407c4c31ec0d4592b89fd80f5a10600af4e0ccd"
+  },
+  "output": {
+    "filename": "dt20_eng_x36_TODOS_NOMBRES_OFICIALES_FC26.cpk",
+    "sha256": "83db345a1bff6c2e57976ca13ef13bd43987c22cb655b118c7dd41f769513150"
+  },
+  "bytes": 368184,
+  "resource": "eng/string/all.str",
+  "cpk_entries": 5,
+  "cpk_modified": 1,
+  "cpk_untouched": 4,
+  "strings_groups": 202,
+  "strings_entries": 11188,
+  "text_entries_modified": 44,
+  "groups_changed": {
+    "Lcx1C": 10,
+    "Onml1W": 21,
+    "TermpesC": 13
+  },
+  "compressed_bytes_before": 280338,
+  "compressed_bytes_after": 279595,
+  "uncompressed_bytes_before": 844784,
+  "uncompressed_bytes_after": 844768,
+  "slot_capacity": 284672,
+  "tests": {
+    "nochange_rebuild_byte_equal": true,
+    "all_groups_reparsed": true,
+    "all_record_IDs_preserved": true,
+    "untargeted_record_texts_preserved": true,
+    "previous_batches_preserved": true,
+    "fictional_competitions_not_renamed": true,
+    "cpk_size_unchanged": true,
+    "other_four_cpk_resources_byte_equal": true,
+    "android": "pending"
+  },
+  "future_leagues": {
+    "PEU": "Bundesliga",
+    "PLA": "Liga BetPlay",
+    "PAS": "Liga MX"
+  },
+  "risk": "Variable-length string labels can exceed Android menu width or reveal parser quirks; backup Lote02 and user menu test required."
+}
