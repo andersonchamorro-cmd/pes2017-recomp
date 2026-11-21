@@ -1,0 +1,60 @@
+{
+  "project": "PES 2017 Android",
+  "phase": "2A",
+  "lot": "07B",
+  "date": "2026-11-21",
+  "status": "binary_verified_android_pending",
+  "goal": "Remove rectangular white backgrounds from three authentic competition logos while retaining original style and FPS target",
+  "input": {
+    "filename": "dt15_x36_LOTE07_COPPA_FRANCIA_PORTUGAL.cpk",
+    "sha256": "fff16a5633c8df17a52c875f9f6db79b1d4fcfcb7615d39b4597c0bcd18ee140",
+    "bytes": 246746371
+  },
+  "output": {
+    "filename": "dt15_x36_LOTE07B_TRANSPARENTE_FC26.cpk",
+    "sha256": "10778afa0f01507edc62eb5940caf51a2a66eaa10520fae538b67d8b42fe140c",
+    "bytes": 246746371
+  },
+  "total_resources": 2784,
+  "modified_resources": 3,
+  "unchanged_byte_for_byte": 2781,
+  "changes": [
+    {
+      "competition": "Coppa Italia Frecciarossa",
+      "resource": "emb_0016_l.png",
+      "old_bytes": 4256,
+      "new_bytes": 6765,
+      "png_sha256": "95ca7338c09e01a40f08ef7c5823f222bd4e3ed703f8987d2ee798e4b4de6846",
+      "alpha_method": "white-matte extraction from authentic original, preserve white sponsor lettering"
+    },
+    {
+      "competition": "Coupe de France Crédit Agricole",
+      "resource": "emb_0018_l.png",
+      "old_bytes": 6357,
+      "new_bytes": 7423,
+      "png_sha256": "017b9b2131807e16ed15f1f46230fa60852d682efe72b75df56abe6367fa18ed",
+      "alpha_method": "original RGBA preserved"
+    },
+    {
+      "competition": "Taça de Portugal Generali Tranquilidade",
+      "resource": "emb_0020_l.png",
+      "old_bytes": 4626,
+      "new_bytes": 7945,
+      "png_sha256": "597b9f005790c70477e3e04be9e1609aa8723d07aee67ae81bd9b2c235416877",
+      "alpha_method": "original RGBA preserved"
+    }
+  ],
+  "png_format": "PNG indexed 256x256, palette with alpha transparency",
+  "validation": {
+    "cpk_header": "pass",
+    "toc": "pass",
+    "other_resource_bytewise_comparison": "pass",
+    "png_decode": "pass",
+    "transparent_background": "pass",
+    "same_container_length": "pass",
+    "android_visual": "pending",
+    "match_fps": "pending",
+    "master_league_save_load": "pending"
+  },
+  "no_modified": "Other 2781 resources, no team/league names, no scores, no gameplay files"
+}
