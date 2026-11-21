@@ -3,7 +3,7 @@
   "date": "2026-11-21",
   "phase": "2A cup emblems",
   "competition": "Emirates FA Cup",
-  "status": "binary_verified_android_test_pending",
+  "status": "android_menu_visual_pass_pending_full_match_save_validation",
   "base": {
     "filename": "dt15_x36_LOTE04_LOGOS_AUTENTICOS.cpk",
     "bytes": 246746371,
@@ -41,10 +41,15 @@
     "modified_png": "passed",
     "unmodified_entries_bytewise": "passed",
     "file_length": "passed",
-    "android_menu": "pending",
+    "android_menu": "passed_in_two_user_screenshots",
     "full_match_fps": "pending",
-    "master_league_save_load": "pending"
+    "master_league_save_load": "pending",
+    "android_fps": "60_fps_menus_only_16_6_ms",
+    "overlay_temperature": "48-52_C_from_two_menu_screenshots",
+    "prior_logos": "premier_league_and_efl_championship_visible",
+    "generic_competition_label": "England Cup (unchanged)"
   },
   "rollback": "Keep a separate backup of the currently functional dt15_x36.cpk. Close the game before replacing; restore backup on failure.",
-  "public_git_content": "Metadata and scripts only. Neither CPK, svg nor third-party logo assets committed."
+  "public_git_content": "Metadata and scripts only. Neither CPK, svg nor third-party logo assets committed.",
+  "next_step": "Continue other original domestic cup logos; keep current dt15 backup; do not mark full stability without match and save tests."
 }
