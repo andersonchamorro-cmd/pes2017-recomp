@@ -1,0 +1,59 @@
+{
+  "date": "2026-11-21",
+  "project": "PES 2017 Android, Xiaomi Mi 10T",
+  "batch": "10",
+  "status": "STRUCTURAL_VALIDATION_PASSED_ANDROID_MENU_AND_MATCH_TEST_PENDING",
+  "input": {
+    "filename": "dt15_x36_LOTE09B_SUPERCOPAS_SIN_FONDOS_FC26.cpk",
+    "sha256": "f7625ce5d4c436c868932bc39a21fa64cb1d32ad1ae8ffa653c2f3e2fad42cc6",
+    "bytes": 246746371
+  },
+  "output": {
+    "filename": "dt15_x36_LOTE10_PORTUGAL_SUPERCUP_FC26.cpk",
+    "sha256": "1cf59eaa551ba4c8c78178ea38d96fd0841100bf7b3114b457c37d1f0651a8f8",
+    "bytes": 246746371
+  },
+  "resources_total": 2784,
+  "resources_changed": 3,
+  "resources_unchanged_bytewise": 2781,
+  "changes": [
+    {
+      "competition": "Liga Portugal",
+      "resource": "common/render/symbol/emblemLc/emb_0014_l.png",
+      "old_bytes": 3696,
+      "new_bytes": 3667,
+      "sha256_new": "65acc0368e77be39d87c06fac78db300d920ba2e2602f4c6c5af22a1201f0dd5",
+      "operation": "Reused unused palette slot to add single-pixel pale keyline to original navy symbol on alpha-transparent background; all original palette colors retained"
+    },
+    {
+      "competition": "Taça de Portugal",
+      "resource": "common/render/symbol/emblemLc/emb_0020_l.png",
+      "old_bytes": 8319,
+      "new_bytes": 8038,
+      "sha256_new": "cd3f00d070d87f93d73073da072f8cecb39e86ffe3e3cc560c878738bc2b5f33",
+      "operation": "Darken only small lower green sponsor text, preserving original trophy icon and brand shapes"
+    },
+    {
+      "competition": "EA SPORTS FC Supercup Italy",
+      "resource": "common/render/symbol/emblemLc/emb_0076_l.png",
+      "old_bytes": 6871,
+      "new_bytes": 8458,
+      "sha256_new": "f14e8588887c05062f4bdba8861a6beb2615ea30838bb7e8ce206c06e7f417ae",
+      "operation": "Uniform ~7.5% enlargement in same 256x256 palette PNG"
+    }
+  ],
+  "checks": {
+    "sha256_input": "pass",
+    "cpk_header_and_toc": "pass",
+    "each_png_palette_and_alpha": "pass",
+    "transparent_corners": "pass",
+    "all_unmodified_resources": "byte-for-byte 2781/2781 pass",
+    "cpk_size": "unchanged",
+    "android_menu": "pending",
+    "android_full_match_fps": "pending",
+    "master_league_save_load": "pending"
+  },
+  "install": "Back up installed dt15_x36.cpk (known-good Lote09B). With PES completely closed, replace only dt15_x36.cpk by the newly renamed Lote10. Confirm the three logos in selection menus and compare fps; on error restore backup.",
+  "next_phase": "Competition names: locate actual text resources in installed dt10_x36.cpk or language CPK before touching names; do not guess IDs or strings.",
+  "repository_policy": "No third-party logos or commercial CPK content committed to public GitHub; only documentation and checksums"
+}
