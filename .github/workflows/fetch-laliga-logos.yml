@@ -1,0 +1,76 @@
+name: Prepare PES 2017 LaLiga crest images
+
+on:
+  push:
+    branches: [feature/club-names-logos-pilot]
+    paths: [.github/workflows/fetch-laliga-logos.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  download-and-render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install image renderer
+        run: python -m pip install --disable-pip-version-check cairosvg pillow
+
+      - name: Retrieve SVG club crests and render transparent PNGs
+        shell: bash
+        run: |
+          cat > /tmp/get_logos.py <<'PY'
+          from pathlib import Path
+          import urllib.request,io,urllib.parse
+          from PIL import Image
+          import cairosvg
+          names = {
+            4145: "Deportivo_Alavés.svg",
+            258: "Athletic_Club_Bilbao.svg",
+            195: "Celta.svg",
+            111: "Deportivo_La_Coruña.svg",
+            4146: "Eibar.svg",
+            259: "Espanyol.svg",
+            1765: "Granada.svg",
+            364: "Las_Palmas.svg",
+            4272: "Leganés.svg",
+            260: "Málaga.svg",
+            263: "Osasuna.svg",
+            194: "Real_Betis.svg",
+            109: "Real_Madrid.svg",
+            196: "Real_Sociedad.svg",
+            265: "Sevilla.svg",
+            363: "Sporting_Gijón.svg",
+            110: "Valencia.svg",
+            267: "Villarreal.svg",
+          }
+          base="https://raw.githubusercontent.com/JoseArroyave/football-logos/main/logos/spain/"
+          out=Path("laliga-logos");out.mkdir(exist_ok=True)
+          manifest=["PES2017_ID,Source_File,Source_URL,PNG_File"]
+          for teamid,filename in names.items():
+            url=base+urllib.parse.quote(filename)
+            req=urllib.request.Request(url,headers={"User-Agent":"PES2017-Logo-Conversion/1.0"})
+            with urllib.request.urlopen(req, timeout=30) as stream: svg=stream.read()
+            if b"<svg" not in svg[:8192]: raise RuntimeError(f"Not SVG: {filename}")
+            png=cairosvg.svg2png(bytestring=svg,output_width=460,output_height=460)
+            img=Image.open(io.BytesIO(png)).convert("RGBA")
+            bbox=img.getchannel("A").getbbox()
+            if not bbox: raise RuntimeError(f"Empty logo: {filename}")
+            img=img.crop(bbox)
+            img.thumbnail((468,468),Image.Resampling.LANCZOS)
+            canvas=Image.new("RGBA",(512,512),(0,0,0,0))
+            canvas.alpha_composite(img,((512-img.width)//2,(512-img.height)//2))
+            output=f"{teamid:04d}.png"
+            canvas.save(out/output,optimize=True)
+            manifest.append(f"{teamid},{filename},{url},{output}")
+            print(teamid, filename,"=>",output)
+          (out/"manifest.csv").write_text("\n".join(manifest)+"\n",encoding="utf8")
+          assert len(list(out.glob("*.png")))==18
+          PY
+          python /tmp/get_logos.py
+      - name: Export images for private review and local CPK patching
+        uses: actions/upload-artifact@v4
+        with:
+          name: PES2017-LaLiga-18-Crests-Input
+          path: laliga-logos/
+          retention-days: 7
