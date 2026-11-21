@@ -1,0 +1,95 @@
+{
+  "project": "PES 2017 Android — competition logos",
+  "date": "2026-11-21",
+  "status": "structurally_verified_android_untested",
+  "basis": {
+    "filename": "dt15_x36(1).cpk",
+    "sha256": "e610ef7128eeabcc48b8422004950fa0d81004eef205beefbf0ed66a158841ae",
+    "bytes": 246746371
+  },
+  "output": {
+    "filename": "dt15_x36_LOTE04_LOGOS_AUTENTICOS.cpk",
+    "sha256": "853d9cdb40cf22525877231544d8670cf2b6150ad667de83544cf1f4533bee98",
+    "bytes": 246746371
+  },
+  "cpk": {
+    "total_entries": 2784,
+    "modified_entries": 6,
+    "unmodified_entries": 2778,
+    "resource_prefix": "common/render/symbol/emblemLc/"
+  },
+  "changes": [
+    {
+      "png": "emb_0014_l.png",
+      "competition": "Liga Portugal",
+      "old_bytes": 2994,
+      "new_bytes": 3696
+    },
+    {
+      "png": "emb_0067_l.png",
+      "competition": "LaLiga Hypermotion",
+      "old_bytes": 4399,
+      "new_bytes": 4480
+    },
+    {
+      "png": "emb_0068_l.png",
+      "competition": "Ligue 2 BKT",
+      "old_bytes": 3331,
+      "new_bytes": 2296
+    },
+    {
+      "png": "emb_0069_l.png",
+      "competition": "Serie BKT",
+      "old_bytes": 5335,
+      "new_bytes": 5008
+    },
+    {
+      "png": "emb_0071_l.png",
+      "competition": "LaLiga Hypermotion alternative",
+      "old_bytes": 4399,
+      "new_bytes": 4480
+    },
+    {
+      "png": "emb_0072_l.png",
+      "competition": "Serie BKT alternative",
+      "old_bytes": 5335,
+      "new_bytes": 5008
+    }
+  ],
+  "unchanged": [
+    "EFL Championship logo",
+    "dt10",
+    "game executable",
+    "team data",
+    "match scoreboards",
+    "competition menu names",
+    "all other CPK entries"
+  ],
+  "validation": {
+    "container_structure": "pass",
+    "toc_and_extracted_png": "pass",
+    "unmodified_resources_binary_match": "pass",
+    "android_launch": "pending",
+    "android_fps": "pending",
+    "master_league_save_load": "pending"
+  },
+  "repository_policy": "No copyrighted game archive or third-party branding assets in public Git history.",
+  "source_assets": [
+    {
+      "filename": "liga-portugal-seeklogo.png",
+      "sha256": "ba3d7a9768d6b5a4b2777287f6c39580afd83c7170a38069603127c7bc9c0b37"
+    },
+    {
+      "filename": "laliga-hypermotion-seeklogo.png",
+      "sha256": "b8379dd75bbc102ae985a382e679fd2839a9b2ae73485e36014b95d931b34588"
+    },
+    {
+      "filename": "ligue-2-bkt-seeklogo.png",
+      "sha256": "57fa0a0ada89906b5fdcab64e78c88d2bcf118c96c234e6aa33dc5889980543d"
+    },
+    {
+      "filename": "serie-b-2018-logo.png",
+      "sha256": "f9f73024b9d22e7f6fe8feb9d0557d56c1c4e270b226da0ba4eba0d82bbe62c2"
+    }
+  ]
+}
