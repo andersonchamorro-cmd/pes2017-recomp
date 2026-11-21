@@ -1,6 +1,6 @@
 # Fase 2A — Copas nacionales, piloto 01: Emirates FA Cup (2026/27)
 
-**Estado: logo de referencia localizado y preparación reproducible registrada. No existe aún CPK nuevo probado.**
+**Estado: CPK acumulativo generado y verificado estructuralmente; prueba en Android pendiente.**
 
 ## Estado anterior confirmado
 
@@ -25,9 +25,9 @@
 - Flujo de trabajo: `.github/workflows/fetch-domestic-cup-logos.yml`.
 - Objetivo: generar un PNG original a **256×256** (modo paleta P + transparencia), conservando la proporción y con variantes de 32/64/128/256 colores para escoger por calidad y tamaño.
 - El flujo entrega **artefactos temporales privados de GitHub Actions**, sin publicar el logo en el historial Git. No distribuye código comercial ni datos de juego.
-- El resultado aún debe validarse, descargarse y compararse con la imagen oficial antes de integrarlo en el CPK acumulativo.
+- El SVG se recuperó y cotejó visualmente con el logotipo auténtico 2026/27. Se convirtió en PNG indexado con transparencia y se integró en una copia del último CPK acumulativo. El resultado superó pruebas binarias completas.
 
-## Único cambio previsto
+## Único cambio realizado
 
 1. Reemplazar exclusivamente `emb_0015_l.png` dentro del `dt15` acumulativo actual.
 2. Mantener intactos **2.783 recursos** y los otros campos de TOC.
@@ -36,7 +36,7 @@
 5. Guardar respaldo del `dt15` actual, antes de probar el siguiente parche.
 6. Probar el logo de FA Cup en el menú, arrancar partido de copa, regresar a menú, Liga Máster y FPS frente a las mismas opciones.
 
-**No declarar “completado” hasta verificar el PNG y preparar el parche, ni “estable” hasta la prueba en Android.**
+**El nuevo CPK está técnicamente preparado, pero NO es versión estable hasta que el usuario pruebe en Android.**
 
 ## Copas siguientes por orden sugerido
 
@@ -58,3 +58,36 @@
 - No instalar ninguna versión si el contenido de la imagen no corresponde al logo oficial vigente.
 - No publicar archivos CPK del juego, ni copiar marcas de terceros a un repositorio público.
 - Si la fuente de logos falla o el ZIP de Actions no está disponible, **no fabricar un PNG aproximado**: mantener la versión actual hasta contar con un SVG/PNG fiable.
+
+
+## Resultado concreto del parche — 21/11/2026
+
+| Campo | Valor |
+| --- | --- |
+| CPK privado preparado | `dt15_x36_LOTE05_FA_CUP_AUTENTICA.cpk` |
+| Archivo de partida | `dt15_x36_LOTE04_LOGOS_AUTENTICOS.cpk` |
+| SHA-256 de partida | `853d9cdb40cf22525877231544d8670cf2b6150ad667de83544cf1f4533bee98` |
+| SHA-256 de salida | `03cbeb18fc847873a711c733f1ec8fbfa03d60d5688803f07e1310f12004f3c2` |
+| Bytes del contenedor | `246746371`, igual que la base |
+| Recurso modificado | `common/render/symbol/emblemLc/emb_0015_l.png` |
+| PNG original → nuevo | 17612 → **8242 bytes** |
+| Formato de nuevo logo | 256×256, PNG indexado (P), 128 colores, con transparencia |
+| PNG SHA-256 | `2fd4e3889f9127492a6dbe4a003b2b65283fa1e98767a76b226e19190fc81732` |
+| SHA-256 de SVG de origen | `c03088a51865b089d0965f71e61d2e7f2f2b6b534c6e9e974e0c771039db5283` |
+| Procedencia del SVG | `mierzida/FLP_forBBK`, commit `cd7043224e00c85fe1d2a0437003de2b96425b39` |
+| Validación de recursos ajenos | **2783 de 2783 idénticos** |
+| Comprobación de TOC, encabezado y PNG nuevo | **APROBADA** |
+| Comprobación visual en Android y FPS | **PENDIENTE** |
+
+El CPK se entregó directamente en la conversación, pero **no se subió a GitHub** (se conserva la norma de no alojar datos propietarios del juego). El manifiesto JSON de la prueba está en `mods/competition-branding/lote02_fa_cup_manifest.json`.
+
+### Instalación segura
+
+1. Salir completamente del juego.
+2. Respaldar el `dt15_x36.cpk` **actualmente instalado y funcionando** fuera de la carpeta del juego.
+3. Renombrar el lote 05 a `dt15_x36.cpk` y sustituir únicamente ese archivo.
+4. Verificar la FA Cup en el menú; después comprobar las competiciones del lote previo para detectar regresiones.
+5. Jugar un partido, comprobar FPS, regreso al menú y, si se usa, carga/guardado de Liga Máster en una partida de prueba.
+6. Si aparece cualquier anomalía, cerrar y restaurar el `dt15` respaldado.
+
+**En ningún momento se han tocado** `dt10`, plantillas, marcadores, ejecutable ni los otros 2783 recursos dentro de `dt15`.
