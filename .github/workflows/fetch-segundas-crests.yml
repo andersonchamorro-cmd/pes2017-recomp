@@ -1,0 +1,114 @@
+name: Prepare 2016-17 Championship and Spanish Segunda crests
+
+on:
+  push:
+    branches: [feature/club-names-logos-pilot]
+    paths: [.github/workflows/fetch-segundas-crests.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-logo-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install SVG converter
+        run: python -m pip install --disable-pip-version-check pillow cairosvg
+      - name: Fetch and render 46 club logos (input only; no game files)
+        shell: bash
+        run: |
+          cat >/tmp/render_logos.py <<'PY'
+          import urllib.request, urllib.parse,io,csv
+          from pathlib import Path
+          import cairosvg
+          from PIL import Image
+          names = {
+            'england':{
+              107:'Aston_Villa.svg',
+              1588:'Barnsley.svg',
+              201:'Birmingham_City.svg',
+              176:'Blackburn_Rovers.svg',
+              4180:'Brentford.svg',
+              377:'Brighton.svg',
+              1760:'Bristol_City.svg',
+              5016:'Burton_Albion.svg',
+              379:'Cardiff_City.svg',
+              383:'Derby_County.svg',
+              178:'Fulham.svg',
+              2610:'Huddersfield_Town.svg',
+              386:'Ipswich.svg',
+              104:'Leeds_United.svg',
+              106:'Newcastle_United.svg',
+              388:'Norwich_City.svg',
+              389:'Nottingham_Forest.svg',
+              4192:'Preston_North_End.svg',
+              1327:'Queens_Park_Rangers.svg',
+              391:'Reading.svg',
+              4193:'Rotherham_United.svg',
+              394:'Sheffield_Wednesday.svg',
+              400:'Wigan_Athletic.svg',
+              208:'Wolverhampton_Wanderers.svg',
+            },
+            'spain':{
+              2393:'Alcorcón.svg',
+              357:'Almería.svg',
+              4308:'Cádiz_CF.svg',
+              359:'Córdoba.svg',
+              361:'Elche.svg',
+              362:'Getafe.svg',
+              4288:'Gimnàstic_de_Tarragona.svg',
+              2187:'Girona.svg',
+              2188:'Huesca.svg',
+              366:'Levante.svg',
+              2615:'Lugo.svg',
+              261:'Mallorca.svg',
+              2616:'Mirandés.svg',
+              368:'Numancia.svg',
+              4260:'Oviedo.svg',
+              370:'Rayo_Vallecano.svg',
+              4298:'CF_Reus_Deportiu.svg',
+              4320:'Sevilla_Atletico.svg',
+              4147:'Tenerife.svg',
+              4992:'UCAM_Murcia.svg',
+              266:'Real_Valladolid.svg',
+              268:'Real_Zaragoza.svg',
+            }
+          }
+          assert sum(len(v) for v in names.values()) == 46
+          out=Path('segundas-logos')
+          out.mkdir(exist_ok=True)
+          with (out/'manifest.csv').open('w',newline='',encoding='utf8') as fp:
+            writer=csv.writer(fp)
+            writer.writerow(['league','PES2017_ID','Source_File','Source_URL','PNG_File'])
+            for league,clubs in names.items():
+              for teamid,name in clubs.items():
+                url=('https://raw.githubusercontent.com/JoseArroyave/football-logos/main/logos/'
+                     +league+'/'+urllib.parse.quote(name))
+                request=urllib.request.Request(url,headers={'User-Agent':'PES2017-Private-Mod-Assets/1.0'})
+                with urllib.request.urlopen(request,timeout=30) as stream:
+                  data=stream.read()
+                if b'<svg' not in data[:8192]:
+                  raise ValueError('Source is not SVG: '+name)
+                b=cairosvg.svg2png(bytestring=data,output_width=480,output_height=480)
+                im=Image.open(io.BytesIO(b)).convert('RGBA')
+                bbox=im.getchannel('A').getbbox()
+                if not bbox:raise ValueError('Blank image: '+name)
+                im=im.crop(bbox)
+                im.thumbnail((468,468),Image.Resampling.LANCZOS)
+                canv=Image.new('RGBA',(512,512),(0,0,0,0))
+                canv.alpha_composite(im,((512-im.width)//2,(512-im.height)//2))
+                fname=f'{teamid:04d}.png'
+                canv.save(out/fname,optimize=True)
+                writer.writerow([league,teamid,name,url,fname])
+                print('OK',teamid,league,name)
+          assert len(list(out.glob('*.png'))) == 46
+          PY
+          python /tmp/render_logos.py
+
+      - name: Upload temporary conversion artifact for manual validation
+        uses: actions/upload-artifact@v4
+        with:
+          name: PES2017-Championship-Segunda-46-Crest-Inputs
+          path: segundas-logos/
+          retention-days: 7
