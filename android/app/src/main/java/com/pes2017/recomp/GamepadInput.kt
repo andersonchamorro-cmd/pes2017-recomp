@@ -1,5 +1,6 @@
 package com.pes2017.recomp
 
+import android.os.Build
 import android.view.InputDevice
 import android.view.KeyEvent
 import android.view.MotionEvent
@@ -92,6 +93,9 @@ class GamepadInput {
 
     private fun isPad(device: InputDevice): Boolean {
         if (device.isVirtual) return false
+        // Some Xiaomi built-in input devices masquerade as gamepads and take player 1.
+        // Only assign controller slots to physical external devices on Android 10+.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && !device.isExternal) return false
         val sources = device.sources
         val joystick = sources and InputDevice.SOURCE_JOYSTICK == InputDevice.SOURCE_JOYSTICK
         val gamepad = sources and InputDevice.SOURCE_GAMEPAD == InputDevice.SOURCE_GAMEPAD
@@ -116,6 +120,8 @@ class GamepadInput {
         val fromPad = source and InputDevice.SOURCE_GAMEPAD == InputDevice.SOURCE_GAMEPAD ||
             source and InputDevice.SOURCE_JOYSTICK == InputDevice.SOURCE_JOYSTICK
         if (!fromPad) return false
+        // Ignore built-in pseudo-gamepads even if their key event arrives before enumeration.
+        if (event.device?.let(::isPad) != true) return false
         val bit = bitFor(event.keyCode)
         if (bit == 0) return false
         val slot = slotFor(event.deviceId)
@@ -133,6 +139,8 @@ class GamepadInput {
         if (Macro.playing) return false
         if (event.source and InputDevice.SOURCE_JOYSTICK != InputDevice.SOURCE_JOYSTICK) return false
         if (event.action != MotionEvent.ACTION_MOVE) return false
+        // Avoid allocating player 1 to internal joysticks via motion events either.
+        if (event.device?.let(::isPad) != true) return false
         val slot = slotFor(event.deviceId)
 
         val lx = axis(event, MotionEvent.AXIS_X)
