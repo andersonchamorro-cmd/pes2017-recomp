@@ -1,0 +1,67 @@
+{
+  "date": "2026-11-21",
+  "project": "PES2017 Android competition emblem patch",
+  "lot": "07",
+  "status": "binary_verified_android_pending",
+  "input": {
+    "file": "dt15_x36_LOTE06_COPA_REY_SUPERCOPA_AUTENTICAS.cpk",
+    "sha256": "c47883f6093dcdc786cf6a83e41d1a2116afb147a76a7d6fea74c2cbb0b78761",
+    "bytes": 246746371
+  },
+  "output": {
+    "file": "dt15_x36_LOTE07_COPPA_FRANCIA_PORTUGAL.cpk",
+    "sha256": "fff16a5633c8df17a52c875f9f6db79b1d4fcfcb7615d39b4597c0bcd18ee140",
+    "bytes": 246746371
+  },
+  "cpk": {
+    "resources_total": 2784,
+    "resources_changed": 3,
+    "unchanged_bytewise": 2781
+  },
+  "changes": [
+    {
+      "competition": "Coppa Italia Frecciarossa",
+      "cpk_resource": "common/render/symbol/emblemLc/emb_0016_l.png",
+      "old_bytes": 13598,
+      "new_bytes": 4256,
+      "png_sha256": "7564419bd5d58f80f13ba595028b7551db09f8696e099d66ac7922d70a9ae514",
+      "source_url": "https://images.seeklogo.com/logo-png/54/1/coppa-italia-logo-png_seeklogo-547524.png",
+      "source_sha256": "30590073ddf3a192f326be0cae5c346d845a37c452dc9921478f834894d08a01"
+    },
+    {
+      "competition": "Coupe de France Crédit Agricole",
+      "cpk_resource": "common/render/symbol/emblemLc/emb_0018_l.png",
+      "old_bytes": 24645,
+      "new_bytes": 6357,
+      "png_sha256": "cc3ca4a971b6b51c9144d34183d7785bc7d20cea1bc6caad05bf4f657c341f7d",
+      "source_url": "https://assets-eu-01.kc-usercontent.com/00700616-e4fb-015d-9378-ef41bc76ccc9/6d5174ac-29d2-47c9-a3ba-d0c7faaad120/Coupe_de_France_logo.png",
+      "source_sha256": "7a0aeaf28d8ef9f9444ed7844fc579c32cb20e5865dad9fcfd61fec87bed2582"
+    },
+    {
+      "competition": "Taça de Portugal Generali Tranquilidade",
+      "cpk_resource": "common/render/symbol/emblemLc/emb_0020_l.png",
+      "old_bytes": 10806,
+      "new_bytes": 4626,
+      "png_sha256": "0120dab2f4b8f964e378d2da43959e267c6313b8cfb1175375d33d88e611ba83",
+      "source_url": "https://cdn-img.zerozero.pt/img/logos/edicoes/188527_imgbank_.png",
+      "source_sha256": "2ffeb014152c23ba74934ff38d9dfb64b00f43609ca7591135991a38a6c3ed87"
+    }
+  ],
+  "unchanged_fourth_competition": "KNVB Beker — current original branding unverified; left untouched",
+  "verification": {
+    "cpk_header": "pass",
+    "toc": "pass",
+    "all_unmodified_resources": "2781/2781 bytewise identical",
+    "png_format": "PNG palette 256x256",
+    "container_size": "unchanged",
+    "android_ui": "pending",
+    "full_match_fps": "pending",
+    "save_load": "pending"
+  },
+  "notes": [
+    "CPK and third-party source assets not added to public Git history",
+    "GitHub Actions job 44951774847 downloaded and optimized source imagery in isolated run",
+    "Target Android device Xiaomi Mi 10T; user menu reference performance 60 FPS for prior batch only",
+    "Do not touch dt10 or game saves"
+  ]
+}
