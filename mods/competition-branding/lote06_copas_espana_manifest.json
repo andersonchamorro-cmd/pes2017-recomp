@@ -3,7 +3,7 @@
   "phase": "2A",
   "batch": "Lote 06",
   "date": "2026-11-21",
-  "status": "binary_pass_android_pending",
+  "status": "android_menus_pass_full_game_pending",
   "input": {
     "file": "dt15_x36_LOTE05_FA_CUP_AUTENTICA.cpk",
     "bytes": 246746371,
@@ -48,10 +48,14 @@
     "unmodified_resources_bytewise": "pass",
     "fa_cup_retained": "pass",
     "same_file_length": "pass",
-    "android_menu": "pending",
+    "android_menu": "passed_two_user_screenshots",
     "match_fps": "pending",
-    "master_league_save_load": "pending"
+    "master_league_save_load": "pending",
+    "menu_fps": "60_fps_both_screenshots_16_8_and_16_6_ms",
+    "temperature_overlay": "48_and_59_C_component_not_confirmed",
+    "regression_logos": "LaLiga_and_LaLiga_Hypermotion_visible"
   },
   "roll_back": "Restore prior functioning dt15_x36.cpk after closing the game; other files untouched",
-  "public_github_policy": "No licensed third-party logos or commercial game archives committed."
+  "public_github_policy": "No licensed third-party logos or commercial game archives committed.",
+  "next_step": "Next batch max 4 authenticated cup emblems; no blind replacements; CPK byte-checked and tested on Android"
 }
