@@ -51,3 +51,12 @@ Las denominaciones de destino son **candidatas**, no modificaciones efectuadas n
 7. Evitar mezclar cambios de nombres con más modificaciones de logos o marcadores en el mismo lote.
 
 El usuario aportó capturas en chat; no se cargan imágenes personales al repositorio. Únicamente inventario derivado, documentación, hashes y código.
+
+
+## Corrección explícita del usuario sobre las últimas ligas (21/11/2026)
+
+**Importante:** el usuario aclaró que las capturas de las categorías restantes se enviaron **precisamente porque sus ligas y torneos todavía no se han editado**, NO como evidencia de que esas categorías ya estén completas. No declarar terminada la fase global de logos ni dar estas categorías por validadas.
+
+Priorizar revisión de **Brasil, Argentina, Chile, PEU League, PLA League, PAS League, torneos internacionales y Others** (incluidos Club International Cup, South American Championship, KONAMI Cup y KONAMI League). El menú de «Others» muestra 4 entradas; las demás categorías sólo fueron visibles como botones, sin sus listas desplegadas. Se requiere mapear realmente las entradas/IDs y revisar clubes para no sustituir arbitrariamente categorías ficticias por ligas reales.
+
+**Orden acordado tras esta aclaración:** (1) completar o definir conscientemente las ligas y logos pendientes; (2) entrar en fase de nombres oficiales con el paquete de textos localizado; (3) marcadores y acabado visual FC26. `dt10_x36.cpk` será necesario en la fase de nombres, pero no debe interrumpir la auditoría de categorías pendientes. Conservar el CPK de logos lote 10 como última base comprobada visualmente en menús.
