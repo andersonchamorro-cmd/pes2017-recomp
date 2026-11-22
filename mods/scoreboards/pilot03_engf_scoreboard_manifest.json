@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-21",
+  "project": "PES 2017 Android Xbox360 recomp",
+  "batch": "scoreboard-pilot-03",
+  "status": "BINARY_VERIFIED_ANDROID_PENDING",
+  "entry_target": "common/menu/licence/game2dEngF.bin",
+  "input": {
+    "file": "dt11_x36.cpk",
+    "sha256": "e20bbb24907ad7143e403fdbb1c3dad1fb5eabe24b4d95189829f18f42b1c030",
+    "bytes": 160987324
+  },
+  "output": {
+    "file": "dt11_x36_MARCADOR_PILOTO03_ENGF_MORADO_FC26.cpk",
+    "sha256": "769e3786af10ff8e7016c015bd908d2fab0531e3d400e726b5a1cd855885c6d6",
+    "bytes": 160987324
+  },
+  "archive": {
+    "toc_entries": 751,
+    "modified_entries": 1,
+    "other_entries_bitwise_equal": 750,
+    "resource_original_bytes": 166771,
+    "resource_new_bytes": 163531,
+    "slot_bytes": 167936
+  },
+  "texture": {
+    "name": "tex000",
+    "txdt_format": "ARGB",
+    "dimensions": [
+      268,
+      136
+    ],
+    "compression": "legacy LZ",
+    "compressed_original_bytes": 28777,
+    "compressed_new_bytes": 26591,
+    "edited_rgb_pixels": 6042,
+    "all_alpha_bytes_equal": true,
+    "below_pixel_row_28_equal": true,
+    "tex001_identical": true
+  },
+  "validation": {
+    "cpk_sha256": true,
+    "cpk_header": true,
+    "toc": true,
+    "full_resource_comparison": true,
+    "inner_WESYS_ZLIB": true,
+    "inner_TXP2_with_padding": true,
+    "inner_LZ_roundtrip": true,
+    "unpacked_RGB_changes_region_only": true,
+    "alpha_preserved": true,
+    "android_gameplay": "pending"
+  },
+  "previous_issue": "pilot02 game2dPes RGBA assumption was wrong: 0x15 uses ARGB; pilot03 fixes mapping and targets the bar that geometrically matches the screenshot",
+  "risk": "Texture routing to English Premier scoreboard not yet confirmed in Android; minimal-impact test in Master League required.",
+  "copyright": "CPK and proprietary sprites stay off public repository"
+}
