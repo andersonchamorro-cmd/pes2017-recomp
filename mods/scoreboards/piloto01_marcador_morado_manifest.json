@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-21",
+  "phase": 3,
+  "batch": "scoreboard-pilot-01",
+  "status": "BINARY_VERIFIED_ANDROID_PENDING",
+  "source": {
+    "filename": "dt11_x36.cpk",
+    "sha256": "e20bbb24907ad7143e403fdbb1c3dad1fb5eabe24b4d95189829f18f42b1c030",
+    "bytes": 160987324
+  },
+  "output": {
+    "filename": "dt11_x36_MARCADOR_PILOTO01_MORADO_FC26.cpk",
+    "sha256": "834693d35d0db1c7b352303401b819d9c7a00fd03cc0d3567a60d627254ecbbb",
+    "bytes": 160987324
+  },
+  "toc_entries": 751,
+  "modified_entries": 1,
+  "byte_identical_untouched_entries": 750,
+  "resource": "common/menu/licence/licenceTexturePes.bin",
+  "resource_old_bytes": 80538,
+  "resource_new_bytes": 80539,
+  "capacity_bytes": 81920,
+  "txp2_texture": "tex000",
+  "txdt_dimensions": [
+    1024,
+    1020
+  ],
+  "txdt_format": "DXT5",
+  "txdt_scorebase_rect": [
+    888,
+    0,
+    964,
+    40
+  ],
+  "changed_legacy_lz_literal_bytes": 4,
+  "unpacked_wesys_modified_offsets": [
+    1569,
+    1570,
+    1571,
+    1572
+  ],
+  "changed_dxt5_endpoint_bytes": 760,
+  "dx1_endpoints_original": "09460125",
+  "dx1_endpoints_modified": "40ec2849",
+  "all_other_txdt_bytes_unchanged": true,
+  "selection_by_competition": "NOT IMPLEMENTED; common PES HUD only",
+  "performance": "PENDING ANDROID MATCH TEST",
+  "copyright": "no CPK or proprietary atlas uploaded to GitHub"
+}
