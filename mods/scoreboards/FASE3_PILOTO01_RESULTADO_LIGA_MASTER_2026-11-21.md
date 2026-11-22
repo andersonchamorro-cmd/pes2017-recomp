@@ -60,3 +60,32 @@ Se recibieron siete capturas adicionales del **mismo entorno de pruebas, Liga M�
 2. Preparar **comparaciones visuales de regiones** con las capturas reales y, solo después, un cambio localizado en la región realmente usada. Conservar dimensiones, tipo DXT5, estructura TXP2 y compresión validada.
 3. Recordar: el HUD PES genérico puede afectar **varias ligas**. La asignación de marcador independiente a Premier League, LaLiga, Serie A, Bundesliga, Liga BetPlay y Liga MX **NO** está probada ni implementada. No prometer que este piloto da marcadores diferenciados.
 4. **El usuario no necesita volver a tomar una captura del logo de animación** ni enviar `dt11` otra vez. Antes de cualquier nueva modificación, preservar el `dt11` original y dejar intactos `dt15`, `dt20`, y sobre todo `saves`/`save_backups`.
+
+## Segunda prueba prolongada aportada por el usuario — minuto 2:57 (21/11/2026)
+
+El usuario compartió siete capturas adicionales de **la misma prueba de Liga Máster**, con marcador normal hasta 2:57. Ya **no se requieren nuevas capturas para determinar si la etiqueta PES2017 es temporal**.
+
+| Captura | Momento | FPS | ms | Temperatura indicador |
+| --- | --- | ---: | ---: | ---: |
+| 146716.jpg | Menú Liga Máster | 60 | 16,7 | 54 °C |
+| 146717.jpg | Alineaciones | 48 | 21,0 | 54 °C |
+| 146718.jpg | Presentación estadio | 25 | 40,3 | 53 °C |
+| 146719.jpg | Saque inicial | 48 | 20,7 | 55 °C |
+| 146720.jpg | Partido minuto 0:42 | 55 | 18,2 | 57 °C |
+| 146721.jpg | Partido minuto 1:53 | 54 | 18,4 | 56 °C |
+| 146722.jpg | Partido minuto 2:57 | 50 | 19,9 | 57 °C |
+
+### Conclusiones evidenciales
+
+1. La animación con etiqueta **PES2017** está presente a los 0:42 y ausente a 1:53 y 2:57, **confirmando** la explicación del usuario de que es un elemento transitorio de inicio.
+2. La pequeña franja **ARS 0–0 MAN** permanece arriba a la izquierda durante 2:57 sin errores de visualización visibles; los resultados, tiempo, tarjetas e indicadores inferiores siguen renderizando.
+3. **El objetivo de recoloración violeta todavía NO se observa**: la franja sigue predominantemente azul. Inspección de píxeles comparables en la imagen (x=150, y=52; mismo 1536×691): la captura anterior al piloto 146703.jpg tiene RGB (8,53,95); la captura con piloto 146720.jpg tiene RGB (7,52,91); 146721.jpg RGB (10,52,94) y 146722.jpg RGB (4,54,89). Los valores son consistentemente azul oscuro y casi idénticos entre versiones. **No aprobar visualmente el nuevo color ni presentarlo como marcador FC26 terminado.** Probablemente la región `scoreBase` afectada no es la que domina visualmente la franja; requiere validar qué región del atlas es efectivamente visible, o cómo el motor la mezcla.
+4. Los FPS de gameplay del piloto son 55, 54 y 50 en distintas escenas; la única captura del original en juego activo mostraba 53. **No concluir que el parche sube o baja FPS**, ni que funcione igual en una partida prolongada. Caídas a 25 FPS ocurren durante presentación de estadio, no durante jugabilidad normal en las capturas aportadas.
+5. **No se ha evaluado guardado/carga**, ni selección automática de marcadores por liga. La partida de Liga Máster debe preservarse.
+
+### Decisión para la próxima iteración
+
+- Clasificar **piloto 01: carga/legibilidad OK, objetivo de color NO validado**.
+- **No pedir más fotos para esta misma duda** ni modificar `dt20`, `dt15` o partidas.
+- El siguiente piloto debería partir del `dt11_x36.cpk` original, con solo una región **verificablemente visible** de la franja en juego, comparando imagen antes/después en el mismo punto y con un color de prueba claramente distinguible. Confirmar primero si el cambio del marcador genérico afectaría todas las ligas, evitando prometer selección por competición.
+- Si se va a guardar progreso o cambiar la base de datos de 2026/27, hacer copia de `saves/` y `save_backups/` antes.
