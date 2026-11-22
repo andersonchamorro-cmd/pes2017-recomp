@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-21",
+  "phase": "3A",
+  "batch": "scoreboard-pilot-02",
+  "status": "STRUCTURALLY_VERIFIED_ANDROID_PENDING",
+  "output": {
+    "filename": "dt11_x36_MARCADOR_PILOTO02_FC26_LIGERO.cpk",
+    "sha256": "18e3491e960098683260260ac3e14f652d19596fcdd3fd4e1f02a9e3c1c4b3ba",
+    "bytes": 160987324
+  },
+  "input": {
+    "filename": "dt11_x36.cpk",
+    "sha256": "e20bbb24907ad7143e403fdbb1c3dad1fb5eabe24b4d95189829f18f42b1c030",
+    "bytes": 160987324
+  },
+  "targeted_entry": "common/menu/licence/game2dPes.bin",
+  "source_entry_bytes": 91230,
+  "output_entry_bytes": 88704,
+  "slot_bytes": 92160,
+  "all_entries": 751,
+  "untouched_entries": 750,
+  "txp2": {
+    "textures": 2,
+    "target_texture": "tex000",
+    "size": [
+      248,
+      222
+    ],
+    "data_format": "uncompressed RGBA, 0x15",
+    "compression": "legacy-LZSS",
+    "before_compressed_bytes": 46001,
+    "after_compressed_bytes": 43695,
+    "atlas_headers_unchanged": true,
+    "other_atlas_untouched": true,
+    "texture_offsets_unchanged": true
+  },
+  "diff": {
+    "modified_rgb_pixels": 16025,
+    "alpha_channel_modified": false,
+    "intro_logos_untouched": true,
+    "new_draw_calls": 0,
+    "new_animations": 0
+  },
+  "reference_url": "https://www.youtube.com/watch?v=GkhXEpaUHqU",
+  "user_priority": "match scoreboard appearance if zero/low performance impact; intro graphics optional, menus explicitly out of scope",
+  "screenshot_status": "preview atlas only; live HUD appearance not verified",
+  "game_performance_status": "not verified; existing gameplay screenshots 50-55fps, intro as low as ~25fps",
+  "scope_limits": "Global PES HUD texture recolor; not complete video-accurate shape; league-specific auto selection not yet mapped."
+}
