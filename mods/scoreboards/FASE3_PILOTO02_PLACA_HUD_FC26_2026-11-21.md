@@ -64,3 +64,26 @@ El piloto 01 cambiaba `licenceTexturePes.bin`, región `hudTexPes-scoreBase`, si
 
 **Estado Android:** NO PROBADO. **Estado binario:** verificado.  
 No distribuir CPK ni arte propietario en GitHub público; solo documentación y manifiestos.
+
+
+## Resultado de prueba Android aportada por el usuario — piloto 02
+
+El usuario instaló el piloto 02 y remitió **7 capturas** de Liga Máster Arsenal–Manchester United (146731.jpg–146737.jpg). Se verificó el siguiente rendimiento mostrado por la app:
+
+| Pantalla | FPS | ms por fotograma |
+| --- | ---: | ---: |
+| Menú Liga Máster | 60 | 16,7 |
+| Alineaciones | 48 | 20,9 |
+| Presentación estadio | 28 | 36,0 |
+| Saque inicial | 30 | 33,5 |
+| Partido 0:49 | 59 | 16,8 |
+| Partido 2:10 | 60 | 16,8 |
+| Partido 4:29 | 52 | 19,2 |
+
+**Diagnóstico visual decisivo:** se compararon recortes en la misma posición de la franja ARS 0–0 MAN a 1536×691 entre capturas previas (146703.jpg, 146722.jpg) y el piloto 02 (146735.jpg, 146736.jpg, 146737.jpg). La mediana RGB del rectángulo x=120..249, y=44..54 se mantuvo **[73,87,114]** tanto antes como después. Otros subsectores también son prácticamente idénticos, dentro de variaciones de compresión JPEG y elementos animados. **El objetivo de modernizar visualmente la franja del marcador no se consiguió.** El sprite recoloreado de `game2dPes.bin` no parece ser el elemento dominante de la franja permanente (podría aparecer en otra escena o no ser referenciado ahí).
+
+El CPK es cargable y la navegación y el partido se presentan correctamente, pero **NO aprobar el piloto 02 como scoreboard modernizado**. En los primeros segundos del saque de salida hay brillos azules que pueden ser animaciones existentes; no vincularlos al parche sin una comparación de vídeo equivalente.
+
+**FPS:** las lecturas puntuales 52–60 durante partido no acreditan ausencia total de impacto ni ganancias; prepartido 28–30 sigue con caídas. Mantener las prioridades del usuario: (1) marcador persistente moderno, (2) presentación de inicio sólo si es ligera, (3) ningún cambio de menús.
+
+**Siguiente trabajo técnico:** realizar un trazado concreto desde la pantalla del reloj/resultado a la referencia de sprite TXP2 que dibuja las placas azules; determinar si parte de la franja proviene de otro paquete de recursos (`licenceTexturePes.bin`, atlas `game2dPes.bin` alternativo u otros BIN). Solo generar el piloto 03 al identificar una región visible, y partir otra vez del `dt11_x36.cpk` original. No pedir de nuevo capturas de la misma escena. Mantener todas las copias y partidas guardadas.
