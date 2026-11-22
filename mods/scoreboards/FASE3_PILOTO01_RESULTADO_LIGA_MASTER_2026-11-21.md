@@ -28,3 +28,7 @@ Antes: alineaciones 29 FPS, presentación 24, saque inicial 51, partido activo (
 - El entorno obligatorio para todos los pilotes futuros es **Liga Máster existente**, con criterios prioritarios de estabilidad de guardados, temporada, competiciones y volver al menú. Evitar iniciar temporada nueva, alterar IDs, plantillas o calendario sin pruebas de compatibilidad.
 - `dt10` (database), `dt15` (lote 10 logos), `dt20` (nombres unificados), `saves` y `save_backups` permanecen sin modificación en esta fase.
 - Ligas ficticias que se reemplazarán en fase 4: PEU→Bundesliga, PLA→Liga BetPlay, PAS→Liga MX. Requerir especial precaución con la partida de Liga Máster ya iniciada.
+
+## Aclaración confirmada directamente por el usuario
+
+El usuario confirmó expresamente que la etiqueta **PES2017** que aparecía temporalmente debajo del marcador a los 0:50 del partido **sí es la animación inicial normal**, no un fallo del piloto. Se cierra esta incidencia: **no solicitar nueva captura para investigar ese logo**. Queda pendiente únicamente comprobar si el cambio de color violeta del elemento `scoreBase` es visible y diseñar un HUD completo con una selección por competición técnicamente validada; la captura actual sigue mostrando el azul predominante.
